@@ -14,9 +14,12 @@ function Square({ value, onSquareClick }) {
 
 export default function Board() {
   const [squares, setSquare] = useState(Array(9).fill(null)); // make 9 elements array and fill them with null
+  const [xIsNext, Toggle] = useState(true);
   function handleClick(i) {
+    if (squares[i]) return; // squares of i is already fill then it will return
     const newSquare = [...squares];
-    newSquare[i] = "X";
+    newSquare[i] = xIsNext ? "X" : "Y";
+    Toggle(!xIsNext);
     setSquare(newSquare);
   }
   return (
